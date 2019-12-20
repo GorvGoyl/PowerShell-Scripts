@@ -12,6 +12,10 @@
 # https://docs.microsoft.com/en-gb/previous-versions/powershell/module/psreadline/Get-PSReadLineKeyHandler?view=powershell-5.0
 #Get-PSReadLineKeyHandler -Bound -Unbound
 
+# try catch blocks
+#https://stackoverflow.com/questions/8693675/check-if-a-command-has-run-successfully
+#https://www.gngrninja.com/script-ninja/2016/6/5/powershell-getting-started-part-11-error-handling
+
 Set-PSReadlineKeyHandler -Key UpArrow -Function HistorySearchBackward
 Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 if ($env:TERM_PROGRAM -eq "vscode") {
@@ -35,7 +39,7 @@ function gitacp {
 
 
 
-function jkbuildgitacp {
+function jkBuild_GitAcp {
   param(
     [Parameter(ValueFromRemainingArguments = $true)]
     [String[]] $message
@@ -51,4 +55,51 @@ function jkbuildgitacp {
 
   echo "👉 git push"
   git push
+}
+
+
+function jkBuild_FbHost_GitAcp {
+  param(
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [String[]] $message
+  )
+  echo "👉 bundle exec jekyll build"
+  bundle exec jekyll build 
+
+  
+  echo "👉 firebase deploy --only hosting -m $message"	
+  firebase deploy --only hosting -m "$message"
+
+  echo "👉 git add ."
+  git add .
+
+  echo "👉 git commit -a -m $message"	
+  git commit -a -m "$message"
+
+  echo "👉 git push"
+  git push
+
+}
+
+function jkBuild_FbFuncHost_GitAcp {
+  param(
+    [Parameter(ValueFromRemainingArguments = $true)]
+    [String[]] $message
+  )
+  echo "👉 bundle exec jekyll build"
+  bundle exec jekyll build 
+
+  echo "👉 firebase deploy --only hosting,functions -m $message"	
+  firebase deploy --only hosting,functions -m "$message"
+
+  echo "👉 git add ."
+  git add .
+
+  echo "👉 git commit -a -m $message"	
+  git commit -a -m "$message"
+
+  echo "👉 git push"
+  git push
+
+
 }
