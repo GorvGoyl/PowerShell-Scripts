@@ -37,69 +37,8 @@ function gitacp {
   git push
 }
 
+function touch {New-Item -ItemType File -Name ($args[0])}
 
 
-function jkBuild_GitAcp {
-  param(
-    [Parameter(ValueFromRemainingArguments = $true)]
-    [String[]] $message
-  )
-  echo "👉 bundle exec jekyll build"
-  bundle exec jekyll build 
-
-  echo "👉 git add ."
-  git add .
-
-  echo "👉 git commit -a -m $message"	
-  git commit -a -m "$message"
-
-  echo "👉 git push"
-  git push
-}
 
 
-function jkBuild_FbHost_GitAcp {
-  param(
-    [Parameter(ValueFromRemainingArguments = $true)]
-    [String[]] $message
-  )
-  echo "👉 bundle exec jekyll build"
-  bundle exec jekyll build 
-
-  
-  echo "👉 firebase deploy --only hosting -m $message"	
-  firebase deploy --only hosting -m "$message"
-
-  echo "👉 git add ."
-  git add .
-
-  echo "👉 git commit -a -m $message"	
-  git commit -a -m "$message"
-
-  echo "👉 git push"
-  git push
-
-}
-
-function jkBuild_FbFuncHost_GitAcp {
-  param(
-    [Parameter(ValueFromRemainingArguments = $true)]
-    [String[]] $message
-  )
-  echo "👉 bundle exec jekyll build"
-  bundle exec jekyll build 
-
-  echo "👉 firebase deploy --only hosting,functions -m $message"	
-  firebase deploy --only hosting,functions -m "$message"
-
-  echo "👉 git add ."
-  git add .
-
-  echo "👉 git commit -a -m $message"	
-  git commit -a -m "$message"
-
-  echo "👉 git push"
-  git push
-
-
-}
