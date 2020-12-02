@@ -22,6 +22,8 @@ if ($env:TERM_PROGRAM -eq "vscode") {
   Set-PSReadLineKeyHandler -Chord 'Ctrl+w' -Function BackwardKillWord
 }
 
+# open file explorer `ii .`
+
 # colorize powershell and show git branch
 # Import-Module posh-git
 function Write-BranchName () {
