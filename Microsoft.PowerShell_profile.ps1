@@ -79,13 +79,13 @@ function gitacp {
     [Parameter(ValueFromRemainingArguments = $true)]
     [String[]] $message
   )
-  echo "👉 git add ."
+  echo "git add ."
   git add .
 
-  echo "👉 git commit -a -m "$message""
+  echo "git commit -a -m "$message""
   git commit -a -m "$message"
 
-  echo "👉 git push"
+  echo "git push"
   git push
 }
 
